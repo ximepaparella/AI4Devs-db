@@ -5,6 +5,12 @@ import dotenv from 'dotenv';
 import candidateRoutes from './routes/candidateRoutes';
 import { uploadFile } from './application/services/fileUploadService';
 import cors from 'cors';
+import applicationRoutes from './routes/applicationRoutes';
+import employeeRoutes from './routes/employeeRoutes';
+import interviewRoutes from './routes/interviewRoutes';
+import interviewFlowRoutes from './routes/interviewFlowRoutes';
+import interviewTypeRoutes from './routes/interviewTypeRoutes';
+import positionRoutes from './routes/positionRoutes';
 
 // Extender la interfaz Request para incluir prisma
 declare global {
@@ -46,6 +52,13 @@ app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
   next();
 });
+
+app.use('/applications', applicationRoutes);
+app.use('/employees', employeeRoutes);
+app.use('/interviews', interviewRoutes);
+app.use('/interview-flows', interviewFlowRoutes);
+app.use('/interview-types', interviewTypeRoutes);
+app.use('/positions', positionRoutes);
 
 const port = 3010;
 
